@@ -35,7 +35,7 @@ def main():
 
     model = DecisionTreeClassifier()
     model.fit(X, y)
-    dump(model, "model.joblib")
+    dump(model, "telecom.joblib")
 
 
 if __name__ == "__main__":

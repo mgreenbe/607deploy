@@ -1,8 +1,9 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 import joblib
 
 app = Flask(__name__)
-model = joblib.load("model.joblib")
+telecom_model = joblib.load("telecom.joblib")
+boston_model = joblib.load("boston.joblib")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -18,13 +19,19 @@ def index():
     return render_template("index.html", x=x, y=y)
 
 
+@app.route("/boston", methods=["POST"])
+def boston():
+    y = boston_model.predict(request.json)
+    return jsonify(y.tolist())
+
+
 @app.route("/telecom", methods=["GET", "POST"])
 def telecom():
     print(request.method)
     if request.method == "POST":
         form_data = dict(request.form)
         x = process_form_data(form_data)
-        y = model.predict([x])[0]
+        y = telecom_model.predict([x])[0]
         print(f"x={x}, y={y}")
         return redirect(url_for("telecom", **form_data, y=y))
     return render_template("telecom.html", **request.args)
