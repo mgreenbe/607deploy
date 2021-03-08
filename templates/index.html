@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DATA 607</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1><a href="/">DATA 607</a></h1>
+    <ul>
+      <li><a href="/telecom">Telecom</a></li>
+    </ul>
     <form method="POST">
-        <label><i>x</i> = <input name="x" value="{{x}}"></label>
-        <input type="submit">
-        <input type="reset">
-    </form>
-    {% if y %}
+      <div>
+        <label><i>x</i> = <input name="x" value="{{x}}" /></label>
+      </div>
+      <div>
+        {% if y %}
         <b><i>y</i> = {{y}}</b>
-    {% endif %}
-</body>
+        {% endif %}
+      </div>
+      <div>
+        <input type="submit" />
+        <input type="reset" />
+      </div>
+    </form>
+  </body>
 </html>
